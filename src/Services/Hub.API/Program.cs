@@ -19,6 +19,8 @@ app.UseApiServices();
 
 if (app.Environment.IsDevelopment())
 {
+
+    //app.MapGet("/", () => "Hello World!");
     //await app.InitialiseDatabaseAsync();
 }
 

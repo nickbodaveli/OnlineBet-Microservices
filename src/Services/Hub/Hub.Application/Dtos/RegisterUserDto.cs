@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hub.Application.Dtos
 {
-   public record LoginUserDto
-       (
-           string UserName, 
+    public record RegisterUserDto(
+           string UserName,
            string Password
        );
-
 }

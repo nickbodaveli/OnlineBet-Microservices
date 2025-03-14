@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Hosting.Server;
 
 namespace Hub.API.Endpoints.Identity
 {
-    public record RegisterUserRequest(LoginUserDto login);
+    public record RegisterUserRequest(RegisterUserDto Register);
     public record RegisterUserResponse(bool isRegistered);
     public class RegisterUser : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/orders", async (RegisterUserRequest request, ISender sender) =>
+            app.MapPost("/register", async (RegisterUserRequest request, ISender sender) =>
             {
-                var command = request.Adapt<CreateUserCommand>();
+                var command = request.Adapt<RegisterUserCommand>();
 
                 var result = await sender.Send(command);
 
