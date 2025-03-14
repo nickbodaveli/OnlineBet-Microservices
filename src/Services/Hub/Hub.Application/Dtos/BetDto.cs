@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Application.Bets.Queries.GetBets
+namespace Hub.Application.Dtos
 {
-    internal class GetPlayerBetsQuery
+    internal class BetDto
     {
     }
 }

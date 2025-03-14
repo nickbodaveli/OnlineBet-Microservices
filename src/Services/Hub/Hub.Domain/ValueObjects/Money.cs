@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Application.Bets.Commands.CreateBet
+namespace Hub.Domain.ValueObjects
 {
-    internal class RecordBetCommand
+    internal class Money
     {
     }
 }

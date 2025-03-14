@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Bets\EventHandlers\" />
-    <Folder Include="Data\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Extensions\" />
+    <Folder Include="Users\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+    <ProjectReference Include="..\Hub.Domain\Hub.Domain.csproj" />
   </ItemGroup>
 
 </Project>

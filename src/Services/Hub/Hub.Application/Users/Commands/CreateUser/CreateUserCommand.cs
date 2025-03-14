@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Application.Bets.Commands.CreateBet
+namespace Hub.Application.Users.Commands.CreateUser
 {
-    internal class RecordBetCommandHandler
+    public class CreateUserCommand
     {
     }
 }
