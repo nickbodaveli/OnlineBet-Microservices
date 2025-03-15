@@ -24,7 +24,7 @@ namespace Hub.Infrastructure.Repositories
             _userManager = userManager;
             _config = config;
         }
-        public async Task<bool> RegisterUser(LoginUser user)
+        public async Task<bool> RegisterUser(RegisterUser user)
         {
             var identityUser = new User
             {

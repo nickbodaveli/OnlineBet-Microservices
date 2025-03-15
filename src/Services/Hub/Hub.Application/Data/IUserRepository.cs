@@ -11,6 +11,6 @@ namespace Hub.Application.Data
     {
         Task<LoginResponse> Login(LoginUser user);
         Task<LoginResponse> RefreshToken(RefreshTokenModel model);
-        Task<bool> RegisterUser(LoginUser user);
+        Task<bool> RegisterUser(RegisterUser user);
     }
 }

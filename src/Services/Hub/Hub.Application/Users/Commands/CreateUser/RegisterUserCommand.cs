@@ -12,5 +12,5 @@ namespace Hub.Application.Users.Commands.CreateUser
     public record RegisterUserCommand(RegisterUserDto Register) 
         : ICommand<RegisterUserResult>;
 
-    public record RegisterUserResult(bool isRegistered);
+    public record RegisterUserResult(bool IsRegistered);
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hub.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 namespace Hub.API.Endpoints.Identity
 {
     public record RegisterUserRequest(RegisterUserDto Register);
-    public record RegisterUserResponse(bool isRegistered);
+    public record RegisterUserResponse(bool IsRegistered);
     public class RegisterUser : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
