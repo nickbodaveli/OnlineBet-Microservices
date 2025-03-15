@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hub.Application.Dtos
 {
-    internal class BetDto
+    public record BetDto
     {
     }
 }

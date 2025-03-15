@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hub.Application.Dtos
 {
-    public record RegisterUserResponseDto
-    {
-        public bool IsRegistered { get; set; } = false;
-    }
+    public record RefreshTokenDto
+    (
+        bool IsLogedIn,
+        string JwtToken,
+        string RefreshToken
+    );
 }

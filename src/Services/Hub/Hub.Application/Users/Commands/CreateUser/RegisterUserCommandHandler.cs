@@ -8,7 +8,7 @@ using Hub.Application.Data;
 
 namespace Hub.Application.Users.Commands.CreateUser
 {
-    public class RegisterUserCommandHandler(IApplicationDbContext dbContext)
+    public class RegisterUserCommandHandler(IApplicationDbContext dbContext, IUserRepository userRepository)
         : ICommandHandler<RegisterUserCommand, RegisterUserResult>
     {
         public async Task<RegisterUserResult> Handle(RegisterUserCommand command, CancellationToken cancellationToken)

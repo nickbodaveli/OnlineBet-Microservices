@@ -13,7 +13,9 @@ namespace Hub.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.Property(m => m.RefreshToken);
+            builder.Property(m => m.RefreshTokenExpiry);
         }
     }
 }
