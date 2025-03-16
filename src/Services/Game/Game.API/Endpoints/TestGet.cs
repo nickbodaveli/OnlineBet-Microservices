@@ -7,7 +7,7 @@ namespace Game.API.Endpoints
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/test", () => "It works");
+            app.MapGet("/test", () => "It works").RequireAuthorization();
         }
     }
 

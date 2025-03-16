@@ -24,6 +24,8 @@ namespace Hub.Infrastructure.Repositories
             _userManager = userManager;
             _config = config;
         }
+
+        // Register new user
         public async Task<bool> RegisterUser(RegisterUser user)
         {
             var identityUser = new User
@@ -36,6 +38,7 @@ namespace Hub.Infrastructure.Repositories
             return result.Succeeded;
         }
 
+        // Login user and issue JWT token
         public async Task<LoginResponse> Login(LoginUser user)
         {
             var response = new LoginResponse();
@@ -51,12 +54,13 @@ namespace Hub.Infrastructure.Repositories
             response.SetRefreshToken(this.GenerateRefreshTokenString());
 
             identityUser.RefreshToken = response.RefreshToken;
-            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12);
+            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); // 12 hours expiration for refresh token
             await _userManager.UpdateAsync(identityUser);
 
             return response;
         }
 
+        // Refresh token logic
         public async Task<LoginResponse> RefreshToken(RefreshTokenModel model)
         {
             var principal = GetTokenPrincipal(model.JwtToken);
@@ -75,28 +79,36 @@ namespace Hub.Infrastructure.Repositories
             response.SetRefreshToken(this.GenerateRefreshTokenString());
 
             identityUser.RefreshToken = response.RefreshToken;
-            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12);
+            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); // 12 hours expiration for refresh token
             await _userManager.UpdateAsync(identityUser);
 
             return response;
         }
 
+        // Validate the token and return the principal (user identity)
         private ClaimsPrincipal? GetTokenPrincipal(string token)
         {
-
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
 
             var validation = new TokenValidationParameters
             {
                 IssuerSigningKey = securityKey,
-                ValidateLifetime = false,
+                ValidateLifetime = true,  // Enabling token expiration validation
                 ValidateActor = false,
                 ValidateIssuer = false,
                 ValidateAudience = false,
             };
-            return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+            try
+            {
+                return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
+        // Generate the refresh token (used for obtaining a new JWT token)
         private string GenerateRefreshTokenString()
         {
             var randomNumber = new byte[64];
@@ -109,23 +121,27 @@ namespace Hub.Infrastructure.Repositories
             return Convert.ToBase64String(randomNumber);
         }
 
+        // Generate JWT token with 30-minute expiration
         private string GenerateTokenString(string userName)
         {
             var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name,userName),
-            new Claim(ClaimTypes.Role,"Admin"),
-        };
+            {
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.Role, "Admin"), // Replace with dynamic role if available
+                new Claim(ClaimTypes.NameIdentifier, "123") // Replace with actual user ID
+            };
 
             var staticKey = _config.GetSection("Jwt:Key").Value;
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(staticKey));
             var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
             var securityToken = new JwtSecurityToken(
+                issuer: _config.GetSection("Jwt:Issuer").Value, // Add issuer
+                audience: _config.GetSection("Jwt:Audience").Value, // Add audience
                 claims: claims,
-                expires: DateTime.Now.AddSeconds(20),
+                expires: DateTime.Now.AddMinutes(30), // Token expires in 30 minutes
                 signingCredentials: signingCred
-                );
+            );
 
             string tokenString = new JwtSecurityTokenHandler().WriteToken(securityToken);
             return tokenString;

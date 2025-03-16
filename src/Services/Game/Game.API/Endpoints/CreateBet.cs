@@ -1,4 +1,5 @@
-﻿using Carter;
+﻿using System.Security.Claims;
+using Carter;
 using Game.Application.Bets.Commands;
 using Game.Application.Dtos;
 using Mapster;
@@ -12,21 +13,27 @@ namespace Game.API.Endpoints
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/bet", async (BetRequest request, ISender sender) =>
+            app.MapPost("/bet", async (BetRequest request, ISender sender, HttpContext httpContext) =>
             {
+                var userId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null)
+                {
+                    return Results.Unauthorized();
+                }
+
                 var command = request.Adapt<CreateBetCommand>();
-
                 var result = await sender.Send(command);
-
                 var response = result.Adapt<BetResponse>();
 
-                return Results.Created($"/users", response);
+                return Results.Created($"/bet/{response.Id}", response);
             })
-        .WithName("Bet")
-        .Produces<BetResponse>(StatusCodes.Status201Created)
-        .ProducesProblem(StatusCodes.Status400BadRequest)
-        .WithSummary("Bet")
-        .WithDescription("Bet");
+            .RequireAuthorization() // ⬅️ Protects this endpoint
+            .WithName("Bet")
+            .Produces<BetResponse>(StatusCodes.Status201Created)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Bet")
+            .WithDescription("Bet");
         }
     }
+
 }
