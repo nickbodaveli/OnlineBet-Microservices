@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hub.Domain.Enums
 {
-    public enum BetOutcome
+    public enum BetStatus
     {
+        Pending, 
+        Win,    
+        Loss,   
+        Draw    
     }
 }

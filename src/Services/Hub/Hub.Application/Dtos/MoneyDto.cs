@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Domain.Exceptions
+namespace Hub.Application.Dtos
 {
-    internal class InvalidBetException
-    {
-    }
+    public record MoneyDto(string Amount);
 }

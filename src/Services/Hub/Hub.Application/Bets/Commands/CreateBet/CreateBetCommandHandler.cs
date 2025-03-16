@@ -1,12 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using BuildingBlocks.CQRS;
+using Hub.Application.Data;
+using Hub.Application.Dtos;
+using Hub.Application.Users.Commands.CreateUser;
+using Hub.Domain.Models;
+using Hub.Domain.ValueObjects;
 
 namespace Hub.Application.Bets.Commands.CreateBet
 {
-    internal class CreateBetCommandHandler
+    public class CreateBetCommandHandler(IApplicationDbContext dbContext)
+          : ICommandHandler<CreateBetCommand, CreateBetResult>
     {
+        public async Task<CreateBetResult> Handle(CreateBetCommand command, CancellationToken cancellationToken)
+        {
+            var bet = CreateNewBet(command.Bet);
+
+            dbContext.Bets.Add(bet);
+            await dbContext.SaveChangesAsync(cancellationToken);
+
+            return new CreateBetResult(bet.Id.Value);
+        }
+
+        private Bet CreateNewBet(BetDto betDto)
+        {
+            var newOrder = Bet.Create(
+                    id: BetId.Of(Guid.NewGuid()),
+                    userId: betDto.UserId,
+                    amount: Money.Of(betDto.Amount.Amount)
+                    );
+
+            return newOrder;
+        }
     }
 }

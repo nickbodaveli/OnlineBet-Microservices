@@ -25,15 +25,16 @@ namespace Hub.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("Database");
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole<int>>(options => // Use IdentityRole<int>
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>()
-           .AddDefaultTokenProviders();
+            })
+         .AddEntityFrameworkStores<ApplicationDbContext>()
+         .AddDefaultTokenProviders();
 
             services.AddAuthentication(options =>
             {

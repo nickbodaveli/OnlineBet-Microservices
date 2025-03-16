@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Endpoints\Bet\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Hub\Hub.Application\Hub.Application.csproj" />
     <ProjectReference Include="..\Hub\Hub.Infrastructure\Hub.Infrastructure.csproj" />
   </ItemGroup>
