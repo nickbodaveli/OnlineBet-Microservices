@@ -32,8 +32,5 @@ namespace Hub.Domain.Models
 
             return bet;
         }
-
-        // Convert Money back to its components (amount and currency)
-        //public (decimal Amount, string Currency) GetAmountDetails() => (Amount.Amount, Amount.Currency);
     }
 }

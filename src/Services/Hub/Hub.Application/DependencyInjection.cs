@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using BuildingBlocks.Behaviors;
+using BuildingBlocks.Messaging.MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
@@ -24,6 +25,7 @@ namespace Hub.Application
             });
 
             services.AddFeatureManagement();
+            services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
             return services;
         }
