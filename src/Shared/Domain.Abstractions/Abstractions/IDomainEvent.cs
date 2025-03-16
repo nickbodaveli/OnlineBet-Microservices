@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace Hub.Domain.Abstractions
+namespace Domain.Abstractions.Abstractions
 {
     public interface IDomainEvent : INotification
     {

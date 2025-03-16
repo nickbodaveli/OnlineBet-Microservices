@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Domain.Abstractions
+namespace Domain.Abstractions.Abstractions
 {
     public interface IEntity<T> : IEntity
     {
@@ -18,5 +18,4 @@ namespace Hub.Domain.Abstractions
         public DateTime? LastModified { get; set; }
         public string? LastModifiedBy { get; set; }
     }
-
 }

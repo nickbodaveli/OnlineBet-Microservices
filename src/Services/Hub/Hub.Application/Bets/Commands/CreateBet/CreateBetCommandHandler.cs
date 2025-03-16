@@ -38,6 +38,7 @@ namespace Hub.Application.Bets.Commands.CreateBet
             var newOrder = Bet.Create(
                     id: BetId.Of(Guid.NewGuid()),
                     userId: betDto.UserId,
+                    gameId: betDto.GameId,
                     amount: Money.Of(betDto.Amount.Amount)
                     );
 

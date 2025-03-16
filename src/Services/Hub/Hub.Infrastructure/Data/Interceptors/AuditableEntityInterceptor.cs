@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Hub.Domain.Abstractions;
+using Domain.Abstractions.Abstractions;
 
 namespace Hub.Infrastructure.Data.Interceptors
 {

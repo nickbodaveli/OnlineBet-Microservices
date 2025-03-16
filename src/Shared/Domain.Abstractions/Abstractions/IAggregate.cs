@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Domain.Abstractions
+namespace Domain.Abstractions.Abstractions
 {
     public interface IAggregate<T> : IAggregate, IEntity<T>
     {

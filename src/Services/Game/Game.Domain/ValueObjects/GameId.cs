@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hub.Domain.Exceptions;
+using Game.Domain.Exceptions;
 
-namespace Hub.Domain.ValueObjects
+namespace Game.Domain.ValueObjects
 {
-    public record BetId
+    public record GameId
     {
         public Guid Value { get; }
-        private BetId(Guid value) => Value = value;
-        public static BetId Of(Guid value)
+        private GameId(Guid value) => Value = value;
+        public static GameId Of(Guid value)
         {
             ArgumentNullException.ThrowIfNull(value);
             if (value == Guid.Empty)
             {
-                throw new DomainException("BetId cannot be empty.");
+                throw new DomainException("GameId cannot be empty.");
             }
 
-            return new BetId(value);
+            return new GameId(value);
         }
     }
 }

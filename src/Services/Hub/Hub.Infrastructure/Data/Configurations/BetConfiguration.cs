@@ -22,7 +22,10 @@ namespace Hub.Infrastructure.Data.Configurations
                 );
 
             builder.Property(b => b.UserId)
-                .IsRequired(); 
+                .IsRequired();
+
+            builder.Property(b => b.GameId)
+             .IsRequired();
 
             builder.HasOne<User>()
                    .WithMany()

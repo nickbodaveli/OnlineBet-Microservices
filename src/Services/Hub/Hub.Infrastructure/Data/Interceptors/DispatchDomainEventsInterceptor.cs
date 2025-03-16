@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Hub.Domain.Abstractions;
+using Domain.Abstractions.Abstractions;
 
 namespace Hub.Infrastructure.Data.Interceptors
 {
