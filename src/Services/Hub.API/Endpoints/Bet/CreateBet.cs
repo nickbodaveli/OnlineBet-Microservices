@@ -1,6 +1,4 @@
 ﻿using Hub.Application.Bets.Commands.CreateBet;
-using Hub.Application.Users.Commands.Authentication;
-using Hub.Domain.Models;
 
 namespace Hub.API.Endpoints.Bet
 {
@@ -18,7 +16,7 @@ namespace Hub.API.Endpoints.Bet
 
                 var response = result.Adapt<BetResponse>();
 
-                return Results.Created($"/users", response);
+                return Results.Created($"/bets", response);
             })
         .WithName("Bet")
         .Produces<BetResponse>(StatusCodes.Status201Created)

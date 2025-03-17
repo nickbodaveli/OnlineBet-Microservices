@@ -7,7 +7,7 @@ using BuildingBlocks.CQRS;
 using BuildingBlocks.Pagination;
 using LeaderBoard.Application.Dtos;
 
-namespace LeaderBoard.Application.Bets.Queries.GetOrders
+namespace LeaderBoard.Application.Bets.Queries.GetBets
 {
     public record GetBetsQuery(PaginationRequest PaginationRequest)
       : IQuery<GetBetsResult>;

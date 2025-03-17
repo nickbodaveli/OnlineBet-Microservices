@@ -23,11 +23,6 @@ builder.Services.AddHttpClient("ApiGatewayClient", client =>
 });
 
 
-
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,9 +32,6 @@ app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {
-
-    //app.MapGet("/", () => "Hello World!");
-    //await app.InitialiseDatabaseAsync();
 }
 
 app.Run();

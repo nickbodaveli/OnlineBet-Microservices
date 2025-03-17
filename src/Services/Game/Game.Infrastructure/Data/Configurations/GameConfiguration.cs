@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Game.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
-using Game.Domain.Models;
-using Game.Domain.ValueObjects;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Game.Infrastructure.Data.Configurations
 {

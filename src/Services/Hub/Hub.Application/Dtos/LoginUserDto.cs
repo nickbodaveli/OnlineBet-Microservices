@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hub.Application.Dtos
+﻿namespace Hub.Application.Dtos
 {
-   public record LoginUserDto
+    public record LoginUserDto
        (
            string UserName, 
            string Password

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using BuildingBlocks.CQRS;
+﻿using BuildingBlocks.CQRS;
 using BuildingBlocks.Messaging.Events;
 using Hub.Application.Data;
 using Hub.Application.Dtos;
-using Hub.Application.Users.Commands.CreateUser;
 using Hub.Domain.Models;
 using Hub.Domain.ValueObjects;
 using Mapster;

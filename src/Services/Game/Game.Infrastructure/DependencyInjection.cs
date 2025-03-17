@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Game.Application.Data;
 using Game.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Game.Infrastructure
@@ -30,13 +25,13 @@ namespace Game.Infrastructure
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("Jwt:Key").Value)),
-                    ValidateIssuer = true, // Validate the issuer
-                    ValidIssuer = "KeisariIssuer", // Must match the Hub service's issuer
-                    ValidateAudience = true, // Validate the audience
-                    ValidAudience = "KeisariAudience", // Must match the Hub service's audience
-                    ValidateLifetime = true, // Validate token expiration
+                    ValidateIssuer = true, 
+                    ValidIssuer = configuration.GetSection("Jwt:Issuer").Value, 
+                    ValidateAudience = true,
+                    ValidAudience = configuration.GetSection("Jwt:Audience").Value, 
+                    ValidateLifetime = true, 
                     RequireExpirationTime = true,
-                    ClockSkew = TimeSpan.Zero // Avoid clock skew issues
+                    ClockSkew = TimeSpan.Zero 
                 };
 
                 options.Events = new JwtBearerEvents

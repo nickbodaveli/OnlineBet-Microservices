@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuildingBlocks.CQRS;
+﻿using BuildingBlocks.CQRS;
 using BuildingBlocks.Messaging.Events;
 using BuildingBlocks.Pagination;
 using LeaderBoard.Application.Data;
 using LeaderBoard.Application.Dtos;
 using LeaderBoard.Application.Extensions;
 using MassTransit;
-using MassTransit.Transports;
 using Microsoft.EntityFrameworkCore;
 
-namespace LeaderBoard.Application.Bets.Queries.GetOrders
+namespace LeaderBoard.Application.Bets.Queries.GetBets
 {
     public class GetBetsQueryHandler(IApplicationDbContext dbContext, IPublishEndpoint publishEndpoint)
     : IQueryHandler<GetBetsQuery, GetBetsResult>

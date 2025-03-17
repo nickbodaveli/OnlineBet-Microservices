@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hangfire;
+using Hangfire.MemoryStorage;
 using LeaderBoard.Application.Data;
-using Microsoft.AspNetCore.Identity;
+using LeaderBoard.Infrastructure.BackgroundJobs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 
 namespace LeaderBoard.Infrastructure.Data
 {
@@ -26,6 +23,16 @@ namespace LeaderBoard.Infrastructure.Data
             });
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+
+            services.AddTransient<HourlyJob>();
+
+
+            // Add Hangfire services
+            services.AddHangfire(config => config.UseMemoryStorage());
+
+
+            services.AddHangfireServer(); 
+
 
             return services;
         }

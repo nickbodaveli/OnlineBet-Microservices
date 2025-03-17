@@ -1,7 +1,7 @@
 using Hub.API;
 using Hub.Application;
+using Hub.Application.Data.Integration;
 using Hub.Infrastructure;
-using Hub.Infrastructure.Data.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,11 +20,10 @@ app.UseApiServices();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapHub<NotificationHub>("/notificationHub");
+
 if (app.Environment.IsDevelopment())
 {
-
-    //app.MapGet("/", () => "Hello World!");
-    //await app.InitialiseDatabaseAsync();
 }
 
 app.Run();

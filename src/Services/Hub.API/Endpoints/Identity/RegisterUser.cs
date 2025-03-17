@@ -1,7 +1,4 @@
-﻿using Carter;
-using Hub.Application.Dtos;
-using Hub.Application.Users.Commands.CreateUser;
-using Microsoft.AspNetCore.Hosting.Server;
+﻿using Hub.Application.Users.Commands.CreateUser;
 
 namespace Hub.API.Endpoints.Identity
 {

@@ -1,5 +1,4 @@
 ﻿using Hub.Application.Users.Commands.Authentication;
-using Hub.Application.Users.Commands.CreateUser;
 using Hub.Domain.Models;
 
 namespace Hub.API.Endpoints.Identity

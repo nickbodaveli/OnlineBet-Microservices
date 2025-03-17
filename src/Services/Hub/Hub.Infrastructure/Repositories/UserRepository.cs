@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Hub.Application.Data;
 using Hub.Domain.Models;
 using Microsoft.AspNetCore.Identity;
@@ -54,7 +50,7 @@ namespace Hub.Infrastructure.Repositories
             response.SetRefreshToken(this.GenerateRefreshTokenString());
 
             identityUser.RefreshToken = response.RefreshToken;
-            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); // 12 hours expiration for refresh token
+            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); 
             await _userManager.UpdateAsync(identityUser);
 
             return response;
@@ -79,7 +75,7 @@ namespace Hub.Infrastructure.Repositories
             response.SetRefreshToken(this.GenerateRefreshTokenString());
 
             identityUser.RefreshToken = response.RefreshToken;
-            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); // 12 hours expiration for refresh token
+            identityUser.RefreshTokenExpiry = DateTime.Now.AddHours(12); 
             await _userManager.UpdateAsync(identityUser);
 
             return response;
@@ -93,7 +89,7 @@ namespace Hub.Infrastructure.Repositories
             var validation = new TokenValidationParameters
             {
                 IssuerSigningKey = securityKey,
-                ValidateLifetime = true,  // Enabling token expiration validation
+                ValidateLifetime = true,  
                 ValidateActor = false,
                 ValidateIssuer = false,
                 ValidateAudience = false,
@@ -107,8 +103,6 @@ namespace Hub.Infrastructure.Repositories
                 return null;
             }
         }
-
-        // Generate the refresh token (used for obtaining a new JWT token)
         private string GenerateRefreshTokenString()
         {
             var randomNumber = new byte[64];
@@ -121,14 +115,13 @@ namespace Hub.Infrastructure.Repositories
             return Convert.ToBase64String(randomNumber);
         }
 
-        // Generate JWT token with 30-minute expiration
         private string GenerateTokenString(string userName)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, userName),
-                new Claim(ClaimTypes.Role, "Admin"), // Replace with dynamic role if available
-                new Claim(ClaimTypes.NameIdentifier, "123") // Replace with actual user ID
+                new Claim(ClaimTypes.Role, "Admin"), 
+                new Claim(ClaimTypes.NameIdentifier, "123") 
             };
 
             var staticKey = _config.GetSection("Jwt:Key").Value;
@@ -136,10 +129,10 @@ namespace Hub.Infrastructure.Repositories
             var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
             var securityToken = new JwtSecurityToken(
-                issuer: _config.GetSection("Jwt:Issuer").Value, // Add issuer
-                audience: _config.GetSection("Jwt:Audience").Value, // Add audience
+                issuer: _config.GetSection("Jwt:Issuer").Value, 
+                audience: _config.GetSection("Jwt:Audience").Value, 
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Token expires in 30 minutes
+                expires: DateTime.Now.AddMinutes(60),
                 signingCredentials: signingCred
             );
 

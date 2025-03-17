@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Hub.Application.Data;
-using Hub.Infrastructure.Data.Interceptors;
+using Hub.Domain.Models;
 using Hub.Infrastructure.Data;
+using Hub.Infrastructure.Data.Interceptors;
+using Hub.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Hub.Domain.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Hub.Infrastructure.Repositories;
 
 namespace Hub.Infrastructure
 {
@@ -25,7 +21,7 @@ namespace Hub.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("Database");
 
-            services.AddIdentity<User, IdentityRole<int>>(options => // Use IdentityRole<int>
+            services.AddIdentity<User, IdentityRole<int>>(options => 
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;

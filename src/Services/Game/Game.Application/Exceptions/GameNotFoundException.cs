@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildingBlocks.Exceptions;
 
 namespace Game.Application.Exceptions
 {
-    internal class GameNotFoundException
+    internal class GameNotFoundException : NotFoundException
     {
+        public GameNotFoundException(Guid id) : base("Game", id)
+        {
+        }
     }
 }

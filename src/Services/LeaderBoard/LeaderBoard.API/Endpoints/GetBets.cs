@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.Pagination;
 using Carter;
-using LeaderBoard.Application.Bets.Queries.GetOrders;
+using LeaderBoard.Application.Bets.Queries.GetBets;
 using LeaderBoard.Application.Dtos;
 using Mapster;
 using MediatR;

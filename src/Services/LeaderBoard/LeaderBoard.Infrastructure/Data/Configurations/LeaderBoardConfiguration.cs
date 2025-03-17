@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using LeaderBoard.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
-using LeaderBoard.Domain.ValueObjects;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LeaderBoard.Infrastructure.Data.Configurations
 {

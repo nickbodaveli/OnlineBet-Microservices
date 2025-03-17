@@ -20,7 +20,7 @@ namespace LeaderBoard.API.Endpoints
 
                 var response = result.Adapt<BetResponse>();
 
-                return Results.Created($"/users", response);
+                return Results.Created($"/bets", response);
             })
         .WithName("Bet")
         .Produces<BetResponse>(StatusCodes.Status201Created)

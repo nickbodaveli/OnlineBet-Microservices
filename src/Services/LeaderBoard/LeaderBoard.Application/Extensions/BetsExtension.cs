@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeaderBoard.Application.Dtos;
+﻿using LeaderBoard.Application.Dtos;
 using LeaderBoard.Domain.Models;
 
 namespace LeaderBoard.Application.Extensions

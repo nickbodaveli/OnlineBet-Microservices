@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeaderBoard.Domain.Exceptions;
+﻿using LeaderBoard.Domain.Exceptions;
 
 namespace LeaderBoard.Domain.ValueObjects
 {
