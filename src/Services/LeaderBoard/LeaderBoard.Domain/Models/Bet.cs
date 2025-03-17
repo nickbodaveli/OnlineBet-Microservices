@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Abstractions.Abstractions;
-using Hub.Domain.Enums;
-using Hub.Domain.Events;
-using Hub.Domain.ValueObjects;
+using LeaderBoard.Domain.Enums;
+using LeaderBoard.Domain.ValueObjects;
 
-namespace Hub.Domain.Models
+namespace LeaderBoard.Domain.Models
 {
     public class Bet : Aggregate<BetId>
     {
         public int UserId { get; private set; }
         public int GameId { get; private set; }
-        public decimal Amount { get; private set; } 
+        public decimal Amount { get; private set; }
         public DateTime Timestamp { get; private set; }
         public BetStatus Status { get; private set; }
 
@@ -23,14 +22,12 @@ namespace Hub.Domain.Models
             var bet = new Bet
             {
                 Id = id,
-                UserId = userId, 
+                UserId = userId,
                 GameId = gameId,
-                Amount = amount,     
+                Amount = amount,
                 Timestamp = DateTime.UtcNow,
                 Status = BetStatus.Pending
             };
-
-            bet.AddDomainEvent(new BetCreatedEvent(bet));
 
             return bet;
         }

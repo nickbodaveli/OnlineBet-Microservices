@@ -10,7 +10,7 @@ namespace Game.Application.Dtos
     (
         int UserId,
         int GameId,
-        MoneyDto Amount,
+        decimal Amount,
         DateTime Timestamp
     );
 }

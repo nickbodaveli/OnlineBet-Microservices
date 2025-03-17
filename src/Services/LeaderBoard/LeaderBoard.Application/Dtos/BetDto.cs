@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hub.Domain.ValueObjects;
 
-namespace Hub.Application.Dtos
+namespace LeaderBoard.Application.Dtos
 {
     public record BetDto
     (
         int UserId,
         int GameId,
         decimal Amount,
-        DateTime Timestamp
+        DateTime Timestamp,
+        string Status
     );
 }

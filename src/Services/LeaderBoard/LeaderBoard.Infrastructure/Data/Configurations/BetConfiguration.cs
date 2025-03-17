@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hub.Domain.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Hub.Domain.ValueObjects;
+using LeaderBoard.Domain.Models;
+using LeaderBoard.Domain.ValueObjects;
 
-namespace Hub.Infrastructure.Data.Configurations
+namespace LeaderBoard.Infrastructure.Data.Configurations
 {
     public class BetConfiguration : IEntityTypeConfiguration<Bet>
     {
@@ -17,8 +17,8 @@ namespace Hub.Infrastructure.Data.Configurations
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id)
                 .HasConversion(
-                    id => id.Value, 
-                    value => BetId.Of(value) 
+                    id => id.Value,
+                    value => BetId.Of(value)
                 );
 
             builder.Property(b => b.UserId)
@@ -26,11 +26,6 @@ namespace Hub.Infrastructure.Data.Configurations
 
             builder.Property(b => b.GameId)
              .IsRequired();
-
-            builder.HasOne<User>()
-                   .WithMany()
-                   .HasForeignKey(b => b.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(b => b.Amount)
               .IsRequired();

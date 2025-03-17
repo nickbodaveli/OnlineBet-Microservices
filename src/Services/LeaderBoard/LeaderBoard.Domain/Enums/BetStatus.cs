@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hub.Application.Bets.EventHandlers
+namespace LeaderBoard.Domain.Enums
 {
-    internal class BetCreatedEventHandler
+    public enum BetStatus
     {
+        Pending,
+        Win,
+        Loss,
+        Draw
     }
 }

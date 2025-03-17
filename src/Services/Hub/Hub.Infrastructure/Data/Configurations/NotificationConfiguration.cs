@@ -10,29 +10,30 @@ using Hub.Domain.ValueObjects;
 
 namespace Hub.Infrastructure.Data.Configurations
 {
-    public class BetConfiguration : IEntityTypeConfiguration<Bet>
+    public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
     {
-        public void Configure(EntityTypeBuilder<Bet> builder)
+        public void Configure(EntityTypeBuilder<Notification> builder)
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id)
                 .HasConversion(
-                    id => id.Value, 
-                    value => BetId.Of(value) 
+                    id => id.Value,
+                    value => NotificationId.Of(value)
                 );
 
             builder.Property(b => b.UserId)
                 .IsRequired();
-
-            builder.Property(b => b.GameId)
-             .IsRequired();
 
             builder.HasOne<User>()
                    .WithMany()
                    .HasForeignKey(b => b.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Property(b => b.Amount)
+            builder.Property(b => b.Message)
+              .IsRequired();
+
+
+            builder.Property(b => b.IsRead)
               .IsRequired();
 
             builder.Property(b => b.Timestamp)

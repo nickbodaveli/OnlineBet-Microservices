@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Application.Dtos
+namespace LeaderBoard.Infrastructure.BackgroundJobs
 {
-    public record MoneyDto(string Amount);
+    internal class HourlyJob
+    {
+    }
 }
